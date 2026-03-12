@@ -150,6 +150,58 @@
             text-transform: uppercase;
         }
         
+        /* Premium Release State Styles */
+        .logo-released {
+            font-size: clamp(64px, 15vw, 120px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.5) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+            animation: shimmer 3s infinite alternate;
+        }
+
+        @keyframes shimmer {
+            0% { filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+            100% { filter: drop-shadow(0 0 30px rgba(255,255,255,0.5)); }
+        }
+
+        .status-badge {
+            background: #fff;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 32px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 16px 32px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,255,255,0.4);
+            background: #f0f0f0;
+        }
+
         @media (max-width: 600px) {
             .countdown { grid-template-columns: repeat(2, 1fr); }
             .container { padding: 40px 24px; border-radius: 32px; }
@@ -204,7 +256,19 @@
         function update() {
             const n = new Date().getTime();
             const x = target - n;
-            if (x < 0) { document.querySelector('.container').innerHTML = '<h1 class="logo" style="font-size:36px">GTA VI</h1><p class="subtitle" style="margin-top:16px">has been officially released on</p><div class="release-card" style="margin-top:24px"><div class="release-dot"></div><span class="release-text"><strong>November 19, 2026</strong></span></div>'; return; }
+            if (x < 0) { 
+                document.querySelector('.container').innerHTML = `
+                    <div class="status-badge">Out Now</div>
+                    <h1 class="logo-released">GTA VI</h1>
+                    <p class="subtitle" style="margin-top:0">Experience the next chapter</p>
+                    <div class="release-card" style="margin-top:24px">
+                        <div class="release-dot"></div>
+                        <span class="release-text">Launched <strong>November 19, 2026</strong></span>
+                    </div>
+                    <a href="https://www.rockstargames.com/VI" target="_blank" class="cta-button">Visit Rockstar Games</a>
+                `; 
+                return; 
+            }
             document.getElementById('d').textContent = String(Math.floor(x/86400000)).padStart(3,'0');
             document.getElementById('h').textContent = String(Math.floor((x%86400000)/3600000)).padStart(2,'0');
             document.getElementById('m').textContent = String(Math.floor((x%3600000)/60000)).padStart(2,'0');
