@@ -28,9 +28,35 @@
             justify-content: center;
             color: #fff;
             padding: clamp(16px, 5vw, 40px);
-            background: url('src/images/background.png') center center / cover no-repeat fixed;
+            background: #000;
             position: relative;
             overflow-x: hidden;
+        }
+
+        .bg-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .bg-slide.active {
+            opacity: 1;
         }
         
         body::before {
@@ -219,6 +245,12 @@
     </style>
 </head>
 <body>
+    <div class="bg-slideshow">
+        <div class="bg-slide active" style="background-image: url('src/images/background/background-1.png')"></div>
+        <div class="bg-slide" style="background-image: url('src/images/background/background-2.png')"></div>
+        <div class="bg-slide" style="background-image: url('src/images/background/background-3.png')"></div>
+        <div class="bg-slide" style="background-image: url('src/images/background/background-4.png')"></div>
+    </div>
     <div class="container">
         <h1 class="logo">GTA VI</h1>
         <p class="subtitle">Grand Theft Auto VI</p>
@@ -275,6 +307,18 @@
             document.getElementById('s').textContent = String(Math.floor((x%60000)/1000)).padStart(2,'0');
         }
         update(); setInterval(update, 1000);
+
+        // Background Slideshow Logic
+        const slides = document.querySelectorAll('.bg-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 8000); // Change image every 8 seconds
     </script>
 </body>
 </html>
