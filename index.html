@@ -189,7 +189,7 @@
         
         <div class="release-card">
             <div class="release-dot"></div>
-            <span class="release-text"><strong>November 19, 2026</strong> · PS5 & Xbox</span>
+            <span class="release-text"><strong>November 19, 2026</strong></span>
         </div>
         
         <div class="footer">Rockstar Games</div>
@@ -201,7 +201,7 @@
         function update() {
             const n = new Date().getTime();
             const x = target - n;
-            if (x < 0) { document.querySelector('.container').innerHTML = '<h1 class="logo" style="font-size:36px">GTA VI</h1><p class="subtitle" style="margin-top:16px">has been officially released on</p><div class="release-card" style="margin-top:24px"><div class="release-dot"></div><span class="release-text"><strong>November 19, 2026</strong> · on PS5 & Xbox</span></div>'; return; }
+            if (x < 0) { document.querySelector('.container').innerHTML = '<h1 class="logo" style="font-size:36px">GTA VI</h1><p class="subtitle" style="margin-top:16px">has been officially released on</p><div class="release-card" style="margin-top:24px"><div class="release-dot"></div><span class="release-text"><strong>November 19, 2026</strong></span></div>'; return; }
             document.getElementById('d').textContent = String(Math.floor(x/86400000)).padStart(3,'0');
             document.getElementById('h').textContent = String(Math.floor((x%86400000)/3600000)).padStart(2,'0');
             document.getElementById('m').textContent = String(Math.floor((x%3600000)/60000)).padStart(2,'0');
